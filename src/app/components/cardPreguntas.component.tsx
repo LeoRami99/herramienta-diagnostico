@@ -2,7 +2,7 @@ import React from "react";
 
 const CardPreguntas = ({ data, titulo } : any) => {
   return (
-    <div className="card shadow-xl mt-10 glass animate__animated animate__fadeInUp animate__delay-3s">
+    <div className="card shadow-xl mt-10 glass animate__animated animate__fadeInUp animate__delay-1s">
       <div className="card-body">
         <h2 className="card-title">{titulo}</h2>
         {data.map((item:any, index:any) => (
