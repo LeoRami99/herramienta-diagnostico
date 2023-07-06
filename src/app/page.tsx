@@ -10,9 +10,9 @@ export default function Home() {
   const [nombre, setNombre] = useState(" ");
   const [area, setArea] = useState("Seleccione un area");
   const [diagnostico, setDiagnostico] = useState(" ");
+  const [respuestas, setRespuestas] = useState({});
   const handleNombreChange = (e:any) => {
     setNombre(e.target.value);
-    console.log(nombre);
   };
   const handleAreaChange = (e:any) => {
     setArea(e.target.value);
@@ -22,10 +22,13 @@ export default function Home() {
     setDiagnostico(e.target.value);
     console.log(e.target.value);
   }
+  const onPreguntaChange = (value:any, id:any) => {
+    setRespuestas(prevState => ({...prevState, [id]: value}));
+  };
   return (
     <>
       <NavbarComponent></NavbarComponent>
-      <div className="container w-full flex justify-center">
+      <div className="container w-full flex justify-center"  style={{minHeight: 'calc(100vh - 60px)'}}>
         <form className="card shadow-xl glass p-10 card-form m-10">
           <div className="form-control mt-5 animate__animated animate__fadeInUp">
             <label className="label" htmlFor="area">
@@ -65,11 +68,11 @@ export default function Home() {
 
 
 
-          {diagnostico === "BigData" && <CardPreguntas data={BigData} titulo="Big Data"></CardPreguntas>}
-          {diagnostico === "MarketingDigital" && <CardPreguntas data={MarketingDigital} titulo="Marketing Digital"></CardPreguntas>}
-          {diagnostico === "BaseDeDatos" && <CardPreguntas data={BaseDeDatos} titulo="Base de Datos"></CardPreguntas>}
-          {diagnostico === "Desarrollo" && <CardPreguntas data={Desarrollo} titulo="Desarrollo"></CardPreguntas>}
-          {diagnostico === "RecursosHumanos" && <CardPreguntas data={RecursosHumanos} titulo="Recursos Humanos"></CardPreguntas>}
+          {diagnostico === "BigData" && <CardPreguntas data={BigData} titulo="Big Data" onPreguntaChange={onPreguntaChange}></CardPreguntas>}
+          {diagnostico === "MarketingDigital" && <CardPreguntas data={MarketingDigital} titulo="Marketing Digital" onPreguntaChange={onPreguntaChange}></CardPreguntas>}
+          {diagnostico === "BaseDeDatos" && <CardPreguntas data={BaseDeDatos} titulo="Base de Datos" onPreguntaChange={onPreguntaChange}></CardPreguntas>}
+          {diagnostico === "Desarrollo" && <CardPreguntas data={Desarrollo} titulo="Desarrollo" onPreguntaChange={onPreguntaChange}></CardPreguntas>}
+          {diagnostico === "RecursosHumanos" && <CardPreguntas data={RecursosHumanos} titulo="Recursos Humanos" onPreguntaChange={onPreguntaChange}></CardPreguntas>}
           {/* <CardPreguntas data={BigData} titulo="Big Data"></CardPreguntas>
           <CardPreguntas data={MarketingDigital} titulo="Marketing Digital"></CardPreguntas>
           <CardPreguntas data={BaseDeDatos} titulo="Base de Datos"></CardPreguntas>
